@@ -7,25 +7,26 @@ import kotlin.random.Random.Default.nextInt
 //    println(if (args[0].toInt() < 12) "Good morning, Kotlin" else "Good night, Kotlin")
 //}
 
-fun main(args: Array<String>){
-feedTheFish()
+fun main(args: Array<String>) {
+    var fortune: String
+    for (i in 1..10) {
+        fortune = getFortuneCookie()
+        print("\nYour fortune is: $fortune")
+        if (fortune.contains("Take it easy")) break
+    }
 }
 
-fun feedTheFish(){
-val day = randomDay()
-    val food = "pellets"
-    println("Today is $day and the fish eat $food")
-}
-
-fun randomDay(): String {
-val week = listOf(
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday"
-)
-    return week[Random().nextInt(7)]
+fun getFortuneCookie(): String {
+    val fortunes = listOf(
+        "You will have a great day!",
+        "Things will go well for you today.",
+        "Enjoy a wonderful day of success.",
+        "Be humble and all will turn out well.",
+        "Today is a good day for exercising restraint.",
+        "Take it easy and enjoy life!",
+        "Treasure your friends because they are your greatest fortune."
+    )
+    print("\nEnter your birthday: ")
+    val birthday = readLine()?.toIntOrNull() ?: 1
+    return fortunes[birthday.rem(fortunes.size)]
 }
