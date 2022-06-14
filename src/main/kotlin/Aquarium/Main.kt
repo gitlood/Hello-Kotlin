@@ -1,12 +1,9 @@
 package Aquarium
 
-import Aquarium.Aquarium
-
 fun main(args: Array<String>) {
     buildAquarium()
     makeFish()
 }
-
 
 private fun buildAquarium() {
     val myAquarium = Aquarium()
