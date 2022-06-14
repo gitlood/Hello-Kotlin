@@ -1,5 +1,4 @@
-class SimpleSpice {
-
+class SimpleSpice{
     var spice: String = "curry"
     var spiciness: String = "mild"
     var heat = {
