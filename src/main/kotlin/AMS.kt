@@ -1,76 +1,21 @@
-import java.util.*
-
 fun main(args: Array<String>) {
-    repeat(10) { feedTheFish() }
+println("How do you feel?")
+    println(whatShouldIDoToday(readLine()!!, "rainy"))
+
 }
 
-fun feedTheFish() {
-    val day = randomDay()
-    val food = fishFood(day)
-    println("Today is $day and the fish eat $food")
-    if (shouldChangeWater(day)) {
-        println("Should change water today")
-    }
-    swim()
-    println(canAddFish(10.0, listOf(3, 3, 3)))
-    println(canAddFish(8.0, listOf(2, 2, 2), hasDecorations = false))
-    println(canAddFish(9.0, listOf(1, 1, 3), 3))
-    println(canAddFish(10.0, listOf(), 7, true))
-}
+fun isVeryHot(temperature: Int) = temperature > 35
+fun isSadRainyCold(mood: String, weather: String, temperature: Int) =
+    mood == "sad" && weather == "rainy" && temperature == 0
+fun isHappySunny (mood: String, weather: String) = mood == "happy" && weather == "sunny"
 
-fun canAddFish(
-    tankSize: Double,
-    currentFish: List<Int>,
-    fishSize: Int = 2,
-    hasDecorations: Boolean = true
-): Boolean {
-    var availableTankSize = tankSize
-    // Without decorations, Total length of fish <= 100% of the tank size
-    if (!hasDecorations) {
-        availableTankSize -= currentFish.sum()
-    }
-    // With decorations, Total length of fish <= 80% of the tank size
-    else {
-        availableTankSize = availableTankSize.times(4).div(5)
-        availableTankSize -= currentFish.sum()
-    }
-    println("tankSize: $tankSize, sum: ${currentFish.sum()}, availableTankSize: $availableTankSize")
-    return fishSize <= availableTankSize
-}
 
-fun shouldChangeWater(
-    day: String,
-    temperature: Int = 22,
-    dirty: Int = 20
-): Boolean {
-    return true
-}
-
-fun swim(speed: String = "fast") {
-    println("swimming $speed")
-}
-
-fun randomDay(): String {
-    val days = listOf(
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-    )
-    return days[Random().nextInt(7)]
-}
-
-fun fishFood(day: String): String {
-    return when (day) {
-        "Monday" -> "flakes"
-        "Tuesday" -> "redworms"
-        "Wednesday" -> "granules"
-        "Thursday" -> "mosquitoes"
-        "Friday" -> "plankton"
-        "Saturday" -> "lettuce"
-        else -> "fasting"
+fun whatShouldIDoToday(mood:String, weather: String = "sunny", temperature : Int = 24){
+    when{
+        isHappySunny(mood, weather)-> println("go for walk")
+        isSadRainyCold(mood, weather, 0) -> println("stay in bed")
+        isVeryHot(36) -> println("go swimming")
+        else -> println("Stay home and read")
     }
 }
+
