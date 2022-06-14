@@ -1,21 +1,22 @@
+import java.util.*
+
 fun main(args: Array<String>) {
-println("How do you feel?")
-    println(whatShouldIDoToday(readLine()!!, "rainy"))
+    val spices = listOf("curry", "pepper", "cayenne", "ginger", "red curry", "green curry", "red pepper")
+    println(spices.filter { s -> s.contains("curry") }.sortedBy { s -> s.length })
+    println(spices.filter { s -> s.startsWith('c') && s.endsWith('e') })
+    println(spices.subList(0, 3).filter { s -> s.startsWith('c') })
 
-}
+    val rollDice = {Random().nextInt(12) +1}
+    val rollDice1 = {sides : Int -> if(sides == 0)0 else Random().nextInt(sides)+1}
 
-fun isVeryHot(temperature: Int) = temperature > 35
-fun isSadRainyCold(mood: String, weather: String, temperature: Int) =
-    mood == "sad" && weather == "rainy" && temperature == 0
-fun isHappySunny (mood: String, weather: String) = mood == "happy" && weather == "sunny"
-
-
-fun whatShouldIDoToday(mood:String, weather: String = "sunny", temperature : Int = 24){
-    when{
-        isHappySunny(mood, weather)-> println("go for walk")
-        isSadRainyCold(mood, weather, 0) -> println("stay in bed")
-        isVeryHot(36) -> println("go swimming")
-        else -> println("Stay home and read")
+    val rollDice2: (Int) -> Int = { sides ->
+        if (sides == 0) 0
+        else Random().nextInt(sides) + 1
     }
+    gamePlay(rollDice2(5))
 }
+
+    fun gamePlay(roll : Int){
+        print(roll)
+    }
 
