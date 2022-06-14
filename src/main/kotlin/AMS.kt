@@ -6,8 +6,8 @@ fun main(args: Array<String>) {
     println(spices.filter { s -> s.startsWith('c') && s.endsWith('e') })
     println(spices.subList(0, 3).filter { s -> s.startsWith('c') })
 
-    val rollDice = {Random().nextInt(12) +1}
-    val rollDice1 = {sides : Int -> if(sides == 0)0 else Random().nextInt(sides)+1}
+    val rollDice = { Random().nextInt(12) + 1 }
+    val rollDice1 = { sides: Int -> if (sides == 0) 0 else Random().nextInt(sides) + 1 }
 
     val rollDice2: (Int) -> Int = { sides ->
         if (sides == 0) 0
@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     gamePlay(rollDice2(5))
 }
 
-    fun gamePlay(roll : Int){
-        print(roll)
-    }
+fun gamePlay(roll: Int) {
+    print(roll)
+}
 
