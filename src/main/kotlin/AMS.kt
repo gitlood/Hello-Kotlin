@@ -1,33 +1,76 @@
+import java.util.*
+
 fun main(args: Array<String>) {
-    var fortune: String
-    for (i in 1..10) {
-        fortune = getFortuneCookie(getBirthday())
-        println("\nYour fortune is: $fortune")
-        if (fortune.contains("Take it easy")) break
-    }
+    repeat(10) { feedTheFish() }
 }
 
-fun getFortuneCookie(birthday: Int?): String {
-    val fortunes = listOf(
-        "You will have a great day!",
-        "Things will go well for you today.",
-        "Enjoy a wonderful day of success.",
-        "Be humble and all will turn out well.",
-        "Today is a good day for exercising restraint.",
-        "Take it easy and enjoy life!",
-        "Treasure your friends because they are your greatest fortune."
+fun feedTheFish() {
+    val day = randomDay()
+    val food = fishFood(day)
+    println("Today is $day and the fish eat $food")
+    if (shouldChangeWater(day)) {
+        println("Should change water today")
+    }
+    swim()
+    println(canAddFish(10.0, listOf(3, 3, 3)))
+    println(canAddFish(8.0, listOf(2, 2, 2), hasDecorations = false))
+    println(canAddFish(9.0, listOf(1, 1, 3), 3))
+    println(canAddFish(10.0, listOf(), 7, true))
+}
+
+fun canAddFish(
+    tankSize: Double,
+    currentFish: List<Int>,
+    fishSize: Int = 2,
+    hasDecorations: Boolean = true
+): Boolean {
+    var availableTankSize = tankSize
+    // Without decorations, Total length of fish <= 100% of the tank size
+    if (!hasDecorations) {
+        availableTankSize -= currentFish.sum()
+    }
+    // With decorations, Total length of fish <= 80% of the tank size
+    else {
+        availableTankSize = availableTankSize.times(4).div(5)
+        availableTankSize -= currentFish.sum()
+    }
+    println("tankSize: $tankSize, sum: ${currentFish.sum()}, availableTankSize: $availableTankSize")
+    return fishSize <= availableTankSize
+}
+
+fun shouldChangeWater(
+    day: String,
+    temperature: Int = 22,
+    dirty: Int = 20
+): Boolean {
+    return true
+}
+
+fun swim(speed: String = "fast") {
+    println("swimming $speed")
+}
+
+fun randomDay(): String {
+    val days = listOf(
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
     )
-    print("\nEnter your birthday: ")
-    return when (birthday) {
-        in 0..7 -> (fortunes[0])
-        in 11..15 -> (fortunes[1])
-        28 -> (fortunes[5])
-        in 28..31 -> fortunes[6]
-        else -> fortunes[birthday?.rem(fortunes.size) ?:16]
-    }
+    return days[Random().nextInt(7)]
 }
 
-fun getBirthday(): Int {
-    print("/nPlease enter your birthday: ")
-    return readLine()?.toIntOrNull() ?: 1
+fun fishFood(day: String): String {
+    return when (day) {
+        "Monday" -> "flakes"
+        "Tuesday" -> "redworms"
+        "Wednesday" -> "granules"
+        "Thursday" -> "mosquitoes"
+        "Friday" -> "plankton"
+        "Saturday" -> "lettuce"
+        else -> "fasting"
+    }
 }
