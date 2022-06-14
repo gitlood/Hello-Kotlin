@@ -1,25 +1,12 @@
 package Aquarium
 
-import Spice
+import Aquarium.Aquarium
 
 fun main(args: Array<String>) {
     buildAquarium()
-    loadSpices()
+    makeFish()
 }
 
-private fun loadSpices() {
-    val spices = listOf(
-        Spice("curry", "mild"),
-        Spice("pepper", "moderate"),
-        Spice("cayenne", "hot"),
-        Spice("ginger", "mild"),
-        Spice("red curry", "moderate"),
-        Spice("green curry", "hot"),
-        Spice("red pepper", "hot")
-    )
-
-    println(spices.filter { s -> s.heat < 6 }.toString())
-}
 
 private fun buildAquarium() {
     val myAquarium = Aquarium()
@@ -45,4 +32,18 @@ private fun buildAquarium() {
                 "Length: ${myAquarium2.length} " +
                 "Width: ${myAquarium2.width}"
     )
+}
+
+fun feedFish(fish: FishAction) {
+    //make some food then
+    fish.eat()
+}
+
+fun makeFish() {
+    val shark = Shark()
+    val plecostomus = Plecostomus()
+
+    println("Shark: ${shark.color} \nPlecostomus: ${plecostomus.color}")
+    shark.eat()
+    plecostomus.eat()
 }
