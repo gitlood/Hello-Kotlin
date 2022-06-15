@@ -3,6 +3,29 @@ package Aquarium
 fun main(args: Array<String>) {
     buildAquarium()
     makeFish()
+    val allBooks = setOf("Macbeth", "Romeo and Juliet", "Hamlet", "A Midsummer Night's Dream")
+    //val library = mapOf("Shakespeare" to allBooks)
+  //  println(library.any { it.value.contains("Hamlet") })
+
+    //val moreBooks = mutableMapOf<String, String>("Wilhelm Tell" to "Schiller")
+    //moreBooks.getOrPut("Jungle Book") { "Kipling" }
+    //moreBooks.getOrPut("Hamlet") { "Shakespeare" }
+   // println(moreBooks)
+
+// My Code
+    val allBooksOfOneAuthor = setOf("A", "B", "C")
+// { set of books, author }
+    val library = mapOf(
+        "by William Shakespeare" to allBooksOfOneAuthor,
+        "Genesis" to setOf("M", "H", "N")
+    )
+
+    val hamletFound = library.any() { it.value.contains("Hamlet") }
+    println("Hamlet is " + (if (hamletFound) " " else "not ") + "in the Library")
+
+    val moreBooks = mutableMapOf<String, Set<String>>()
+    moreBooks["Melo"] = setOf("istanbul", "ankara", "izmir")
+    moreBooks.getOrPut("Seno") { setOf("Senosis") }
 }
 
 private fun buildAquarium() {
