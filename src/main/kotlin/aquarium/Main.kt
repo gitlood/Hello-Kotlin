@@ -1,5 +1,7 @@
 package Aquarium
 
+import aquarium.Aquarium
+
 fun main(args: Array<String>) {
     buildAquarium()
     makeFish()
