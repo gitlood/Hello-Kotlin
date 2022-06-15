@@ -33,4 +33,4 @@ fun <T : BaseBuildingMaterials> isSmallBuilding(building: Building<T>) {
     if (building.actualMaterialsNeeded < 500) println("Small building")
     else println("large building")
 }
-isSmallBuilding(Building(Brick()))
+//isSmallBuilding(Building(Brick()))
